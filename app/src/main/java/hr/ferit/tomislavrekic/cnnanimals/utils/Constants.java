@@ -5,13 +5,16 @@ public final class Constants {
 
     public static final int REQUEST_TAKE_PHOTO = 1;
     public static final String TEMP_IMG_KEY = "tempImage.jpg";
-    public static final int IMG_DIM_X = 224;
-    public static final int IMG_DIM_Y = 224;
+    public static final int CNN_DIM_X = 224;
+    public static final int CNN_DIM_Y = 224;
     public static final int DIM_BATCH_SIZE = 1;
     public static final int DIM_PIXEL_SIZE = 3;
 
     public static final int IMAGE_MEAN = 128;
     public static final float IMAGE_STD = 128.0f;
+
+    public static final int DB_IMG_DIM_X = 100;
+    public static final int DB_IMG_DIM_Y = 100;
 
     public static final String DF_NAME_KEY = "dbNameKey";
     public static final String DF_IMAGE_KEY = "dbImageKey";

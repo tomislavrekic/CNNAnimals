@@ -131,9 +131,13 @@ public class CameraController {
 
         tempPic = mPreviewScreen.getBitmap();
 
+        Bitmap scaled = Bitmap.createScaledBitmap(tempPic, Constants.CNN_DIM_X, Constants.CNN_DIM_Y, true);
+
+        Log.d(TAG, "takePicture: " + tempPic.getWidth() + "x" + tempPic.getHeight());
+
         unlock();
 
-        return tempPic;
+        return scaled;
     }
 
     private void closeCamera() {

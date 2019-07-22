@@ -2,7 +2,7 @@
     <string name="app_name">CNNAnimals</string>
     <string name="NavOpen">open</string>
     <string name="NavClose">close</string>
-    <string name="NavMenu1">About</string>
-    <string name="NavMenu2">Help</string>
-    <string name="NavMenu3">Website</string>
+    <string name="NavMenu1">Animal Database</string>
+    <string name="NavMenu2">None</string>
+    <string name="NavMenu3">None</string>
 </resources>

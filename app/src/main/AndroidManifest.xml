@@ -23,6 +23,9 @@
         <activity android:name=".ui.CameraActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.DatabaseActivity"
+            android:screenOrientation="portrait"/>
+
         <provider
             android:authorities="hr.ferit.tomislavrekic.cnnanimals"
             android:name="androidx.core.content.FileProvider"

@@ -18,6 +18,7 @@
         android:layout_weight="0.2"
         android:text="Take Picture"
         android:textColor="@color/colorAccent"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary"
+        android:textSize="@dimen/_20ssp"/>
 
 </LinearLayout>

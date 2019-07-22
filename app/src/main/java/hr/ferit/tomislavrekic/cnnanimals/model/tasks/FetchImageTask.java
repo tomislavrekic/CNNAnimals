@@ -15,8 +15,8 @@ import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.DIM_BATCH_SIZE;
 import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.DIM_PIXEL_SIZE;
 import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.IMAGE_MEAN;
 import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.IMAGE_STD;
-import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.IMG_DIM_X;
-import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.IMG_DIM_Y;
+import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.CNN_DIM_X;
+import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.CNN_DIM_Y;
 
 
 public class FetchImageTask extends AsyncTask<String, Void, ByteBuffer> {
@@ -24,7 +24,7 @@ public class FetchImageTask extends AsyncTask<String, Void, ByteBuffer> {
     public FetchImageCallback mCallback;
     private Context mContext;
 
-    public FetchImageTask(FetchImageCallback callback, Context context) {
+    public FetchImageTask(Context context, FetchImageCallback callback) {
         mCallback = callback;
         mContext = context;
 
@@ -48,7 +48,7 @@ public class FetchImageTask extends AsyncTask<String, Void, ByteBuffer> {
 
         try {
             bitmap = BitmapFactory.decodeStream(mContext.openFileInput(imageKey));
-            return Bitmap.createScaledBitmap(bitmap, IMG_DIM_X, IMG_DIM_Y, true);
+            return Bitmap.createScaledBitmap(bitmap, CNN_DIM_X, CNN_DIM_Y, true);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,9 +59,9 @@ public class FetchImageTask extends AsyncTask<String, Void, ByteBuffer> {
 
     private ByteBuffer convertBitmapToByteBuffer(Bitmap bitmap) {
 
-        ByteBuffer tempBuffer = ByteBuffer.allocateDirect(4 * DIM_BATCH_SIZE * IMG_DIM_X * IMG_DIM_Y * DIM_PIXEL_SIZE);
+        ByteBuffer tempBuffer = ByteBuffer.allocateDirect(4 * DIM_BATCH_SIZE * CNN_DIM_X * CNN_DIM_Y * DIM_PIXEL_SIZE);
         tempBuffer.order(ByteOrder.nativeOrder());
-        int[] intValues = new int[IMG_DIM_X * IMG_DIM_Y];
+        int[] intValues = new int[CNN_DIM_X * CNN_DIM_Y];
 
 
         tempBuffer.rewind();
@@ -69,8 +69,8 @@ public class FetchImageTask extends AsyncTask<String, Void, ByteBuffer> {
         // Convert the image to floating point.
 
         int pixel = 0;
-        for (int i = 0; i < IMG_DIM_X; ++i) {
-            for (int j = 0; j < IMG_DIM_Y; ++j) {
+        for (int i = 0; i < CNN_DIM_X; ++i) {
+            for (int j = 0; j < CNN_DIM_Y; ++j) {
                 final int val = intValues[pixel++];
                 tempBuffer.putFloat(((((val >> 16) & 0xFF) - IMAGE_MEAN) / IMAGE_STD));
                 tempBuffer.putFloat(((((val >> 8) & 0xFF) - IMAGE_MEAN) / IMAGE_STD));

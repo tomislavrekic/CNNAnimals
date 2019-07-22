@@ -35,12 +35,12 @@ public class Classifier {
 
     public void classify(ClassifierCallback callback, String imageKey){
         mCallback = callback;
-        new FetchImageTask(new FetchImageCallback() {
+        new FetchImageTask(mContext, new FetchImageCallback() {
             @Override
             public void processFinish(ByteBuffer output) {
                 new RunNeuralNetworkTask().execute(output);
             }
-        }, mContext).execute(imageKey);
+        }).execute(imageKey);
 
     }
 

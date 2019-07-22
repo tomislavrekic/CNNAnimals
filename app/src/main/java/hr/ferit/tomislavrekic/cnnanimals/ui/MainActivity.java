@@ -209,29 +209,29 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                /*int id = menuItem.getItemId();
+                int id = menuItem.getItemId();
                 switch(id)
                 {
                     case R.id.Inav1:
-                        Intent intent1 = new Intent(MainActivity.this, AboutActivity.class);
+                        Intent intent1 = new Intent(MainActivity.this, DatabaseActivity.class);
                         intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivityIfNeeded(intent1, 0);
                         break;
                     case R.id.Inav2:
-                        Intent intent2 = new Intent(MainActivity.this, HelpActivity.class);
-                        intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        startActivityIfNeeded(intent2, 0);
+                        //Intent intent2 = new Intent(MainActivity.this, HelpActivity.class);
+                        //intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //startActivityIfNeeded(intent2, 0);
                         break;
                     case R.id.Inav3:
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(FGMC_WEB_ADRESS));
-                        startActivity(browserIntent);
+                        //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(FGMC_WEB_ADRESS));
+                        //startActivity(browserIntent);
 
                         break;
                     default:
                         return true;
                 }
 
-*/
+
                 return true;
             }
         });
