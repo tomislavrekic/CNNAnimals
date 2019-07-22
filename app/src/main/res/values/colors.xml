@@ -3,4 +3,13 @@
     <color name="colorPrimary">#4D4D4D</color>
     <color name="colorPrimaryDark">#252525</color>
     <color name="colorAccent">#BDBDBD</color>
+
+    <array name="ratingColors">
+        <item>#D32F2F</item>
+        <item>#E64A19</item>
+        <item>#FBC02D</item>
+        <item>#689F38</item>
+        <item>#0097A7</item>
+        <item>#7B1FA2</item>
+    </array>
 </resources>

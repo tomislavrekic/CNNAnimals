@@ -24,11 +24,8 @@ import hr.ferit.tomislavrekic.cnnanimals.utils.Constants;
 
 public class DBDialogFragment extends DialogFragment {
 
-    Context mContext;
-
-    public static  DBDialogFragment newInstance(DescriptionDbSingleUnit data, Context context){
+    public static  DBDialogFragment newInstance(DescriptionDbSingleUnit data){
         DBDialogFragment f = new DBDialogFragment();
-
 
 
         Bundle args = new Bundle();
@@ -106,6 +103,20 @@ public class DBDialogFragment extends DialogFragment {
         if(tempStream != null){
             Log.d("DBD", "onCreateView: ds");
         }
+
+        int[] colorArray = v.getContext().getResources().getIntArray(R.array.ratingColors);
+
+        for (int j=0; j<Constants.GUESS_RATING_STAGES.length; j++){
+            if(tempGuess > Constants.GUESS_RATING_STAGES[j]){
+                continue;
+            }
+            else {
+                tvGuess.setTextColor(colorArray[j]);
+                break;
+            }
+
+        }
+
 
         ivImage.setImageBitmap(BitmapFactory.decodeStream(tempStream));
         tvName.setText(tempName);

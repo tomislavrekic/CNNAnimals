@@ -1,7 +1,10 @@
 package hr.ferit.tomislavrekic.cnnanimals.ui;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,20 +20,29 @@ import java.util.List;
 
 import hr.ferit.tomislavrekic.cnnanimals.R;
 import hr.ferit.tomislavrekic.cnnanimals.descriptiondb.DescriptionDbSingleUnit;
+import hr.ferit.tomislavrekic.cnnanimals.utils.Constants;
 import hr.ferit.tomislavrekic.cnnanimals.utils.OnClickListener;
+
+import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.TAG;
 
 public class DbListAdapter extends RecyclerView.Adapter<DbListAdapter.DbListViewHolder> {
     private List<DescriptionDbSingleUnit> mData;
     private Context mContext;
     private OnClickListener listener;
+    private Resources resources;
+    private int[] colorArray;
 
 
     @NonNull
     @Override
     public DbListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.fragment_animlist, viewGroup, false);
+                .inflate(R.layout.fragment_listitem, viewGroup, false);
 
+        resources = mContext.getResources();
+
+        colorArray = resources.getIntArray(R.array.ratingColors);
+        Log.d(TAG, "onCreateViewHolder: " + colorArray);
         DbListViewHolder vh = new DbListViewHolder(v);
         return vh;
     }
@@ -44,9 +56,23 @@ public class DbListAdapter extends RecyclerView.Adapter<DbListAdapter.DbListView
         catch (IOException e){
             e.printStackTrace();
         }
+
+        float guess = mData.get(i).getGuess();
+
+        for (int j=0; j<Constants.GUESS_RATING_STAGES.length; j++){
+            if(guess > Constants.GUESS_RATING_STAGES[j]){
+                continue;
+            }
+            else {
+                dbListViewHolder.tvGuess.setTextColor(colorArray[j]);
+                break;
+            }
+
+        }
+
         dbListViewHolder.ivThumbnail.setImageBitmap(BitmapFactory.decodeStream(tempStream));
         dbListViewHolder.tvName.setText(mData.get(i).getName());
-        dbListViewHolder.tvGuess.setText(String.valueOf(mData.get(i).getGuess()));
+        dbListViewHolder.tvGuess.setText(String.format("%.3f", guess));
     }
 
     @Override

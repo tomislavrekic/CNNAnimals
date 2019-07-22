@@ -64,7 +64,7 @@ public class DatabaseActivity extends AppCompatActivity {
     }
 
     void showDialogFragment(int pos) {
-        DialogFragment df = DBDialogFragment.newInstance(items.get(pos), this);
+        DialogFragment df = DBDialogFragment.newInstance(items.get(pos));
         df.show(this.getSupportFragmentManager(), "DBD");
     }
 

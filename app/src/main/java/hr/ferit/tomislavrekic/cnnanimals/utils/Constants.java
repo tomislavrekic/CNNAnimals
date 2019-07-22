@@ -31,4 +31,6 @@ public final class Constants {
 
     public static final String APP_LOGO = "FGMCLogo.png";
 
+    public static final float[] GUESS_RATING_STAGES = {0.4f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f};
+
 }

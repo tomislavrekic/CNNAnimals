@@ -30,22 +30,22 @@
 
         <TextView
             android:id="@+id/tvDetailName"
-            android:layout_width="174dp"
+            android:layout_width="210dp"
             android:layout_height="50dp"
-            android:layout_marginStart="29dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="244dp"
-            android:layout_marginEnd="42dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="437dp"
             android:text="TEMPANIMAL"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivDetailImage"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.609"
-            tools:text="TEMPANIMAL"
-            android:textColor="@color/colorAccent"/>
+            tools:text="TEMPANIMAL" />
 
         <TextView
             android:id="@+id/tvDetailGuess"
