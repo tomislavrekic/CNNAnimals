@@ -5,9 +5,11 @@ import android.util.Log;
 
 import java.io.File;
 
+import hr.ferit.tomislavrekic.cnnanimals.utils.Constants;
+
 public class DescriptionDbUpdateManager {
     DescriptionDbController controller;
-    private static float minGuessValue = 0.5f;
+    private static float minGuessValue = Constants.MIN_GUESS_UPDATE_VALUE;
     private Context mContext;
 
     public DescriptionDbUpdateManager(Context context){
@@ -27,7 +29,7 @@ public class DescriptionDbUpdateManager {
 
         if(input.getGuess() > tempUnit.getGuess()){
             File temp = new File(mContext.getFilesDir() , input.getPicture());
-            if(temp.exists()) Log.d("UDM", "UpdateRow: exists");
+
             temp.renameTo(new File(mContext.getFilesDir() , input.getName()));
             input.setPicture(input.getName());
 

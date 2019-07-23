@@ -24,12 +24,9 @@ public class DatabaseActivity extends AppCompatActivity {
     DescriptionDbController controller;
     List<DescriptionDbSingleUnit> items;
 
-    private static String TAG = "DBDebug";
-
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private OnClickListener listener;
 
 
     @Override
@@ -54,7 +51,6 @@ public class DatabaseActivity extends AppCompatActivity {
             @Override
             public void onClick(int pos) {
                 //show dialog
-                Log.d("DBD", "onClick: " + String.valueOf(pos));
                 showDialogFragment(pos);
             }
         });

@@ -36,24 +36,14 @@ public class DBDialogFragment extends DialogFragment {
         args.putSerializable(Constants.DF_INFO_KEY, data.getInfo());
         args.putSerializable(Constants.DF_DATE_KEY, data.getLastSeen());
 
-        Log.d("DBD", "newInstance: " + data.getName() + data.getInfo() + data.getLastSeen() + data.getPicture()+String.valueOf(data.getGuess())+ String.valueOf(data.getGuessCount()));
-
-
         f.setArguments(args);
 
         return f;
     }
 
-    private static void initViews() {
-
-    }
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Log.d("DBD", "onCreate: fragCreate");
     }
 
     @Nullable
@@ -85,12 +75,6 @@ public class DBDialogFragment extends DialogFragment {
         float tempGuess = args.getFloat(Constants.DF_GUESS_KEY);
         int tempCount = args.getInt(Constants.DF_COUNT_KEY);
 
-
-
-        Log.d("DBD", "onCreateView: " + tempName + tempInfo + tempImage + tempDate+tempCount+tempGuess);
-
-
-
         InputStream tempStream = null;
 
         try {
@@ -98,10 +82,6 @@ public class DBDialogFragment extends DialogFragment {
         }
         catch (IOException e){
             e.printStackTrace();
-        }
-
-        if(tempStream != null){
-            Log.d("DBD", "onCreateView: ds");
         }
 
         int[] colorArray = v.getContext().getResources().getIntArray(R.array.ratingColors);
@@ -114,9 +94,7 @@ public class DBDialogFragment extends DialogFragment {
                 tvGuess.setTextColor(colorArray[j]);
                 break;
             }
-
         }
-
 
         ivImage.setImageBitmap(BitmapFactory.decodeStream(tempStream));
         tvName.setText(tempName);
@@ -124,8 +102,6 @@ public class DBDialogFragment extends DialogFragment {
         tvDate.setText(tempDate);
         tvGuess.setText(String.valueOf(tempGuess));
         tvCount.setText(String.valueOf(tempCount));
-
-
 
         return v;
     }

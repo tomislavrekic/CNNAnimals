@@ -3,7 +3,6 @@ package hr.ferit.tomislavrekic.cnnanimals.utils;
 public final class Constants {
     public static final String TAG = "CNNTAG";
 
-    public static final int REQUEST_TAKE_PHOTO = 1;
     public static final String TEMP_IMG_KEY = "tempImage.jpg";
     public static final int CNN_DIM_X = 224;
     public static final int CNN_DIM_Y = 224;
@@ -32,5 +31,7 @@ public final class Constants {
     public static final String APP_LOGO = "FGMCLogo.png";
 
     public static final float[] GUESS_RATING_STAGES = {0.4f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f};
+
+    public static final float MIN_GUESS_UPDATE_VALUE = 0.2f;
 
 }

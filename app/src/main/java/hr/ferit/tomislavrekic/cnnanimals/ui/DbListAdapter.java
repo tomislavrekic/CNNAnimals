@@ -42,7 +42,6 @@ public class DbListAdapter extends RecyclerView.Adapter<DbListAdapter.DbListView
         resources = mContext.getResources();
 
         colorArray = resources.getIntArray(R.array.ratingColors);
-        Log.d(TAG, "onCreateViewHolder: " + colorArray);
         DbListViewHolder vh = new DbListViewHolder(v);
         return vh;
     }

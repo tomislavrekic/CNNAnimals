@@ -10,6 +10,8 @@ import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.List;
 
+import hr.ferit.tomislavrekic.cnnanimals.utils.Constants;
+
 public class DescriptionDbUpdater {
     private Context mContext;
     private List<String> mLabels;
@@ -35,7 +37,7 @@ public class DescriptionDbUpdater {
     public String createImageFromBitmapDB(Bitmap bitmap) {
         String fileName = "tempNameFile";//no .png or .jpg needed
         try {
-            Bitmap.createScaledBitmap(bitmap, 100, 100, true);
+            Bitmap.createScaledBitmap(bitmap, Constants.DB_IMG_DIM_X, Constants.DB_IMG_DIM_Y, true);
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
             FileOutputStream fo = mContext.openFileOutput(fileName, Context.MODE_PRIVATE);

@@ -4,7 +4,7 @@ import android.content.Context;
 
 public interface NNContract {
     interface View{
-        void updateText(String text);
+        void updateText(String guessedLabel, float activation);
         void updatePicture(String uri);
     }
 

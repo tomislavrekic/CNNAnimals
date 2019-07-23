@@ -24,8 +24,7 @@ public class DBModel implements DBContract.Model {
 
     public DBModel() {
         mContext = MainActivity.getContext();
-        Classifier classifier = new Classifier(Constants.TF_MODEL_PATH, Constants.TF_LABEL_PATH, mContext);
-        mUpdater = new DescriptionDbUpdater(mContext, classifier.getLabels() );
+        mUpdater = new DescriptionDbUpdater(mContext, Classifier.initLabels(Constants.TF_LABEL_PATH, mContext));
         initDB(mContext);
     }
 

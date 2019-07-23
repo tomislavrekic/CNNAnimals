@@ -21,12 +21,10 @@ import android.view.TextureView;
 
 import java.util.Collections;
 
+import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.TAG;
+
 public class CameraController {
-
-    static String TAG = "Cam123";
-
-    static int lowestCamResolution = 400;
-
+    private static int lowestCamResolution = 400;
 
     private int cameraFacing;
     private android.hardware.camera2.CameraManager cameraManager;
@@ -84,7 +82,6 @@ public class CameraController {
         stateCallback = new CameraDevice.StateCallback() {
             @Override
             public void onOpened(CameraDevice cameraDevice) {
-                Log.d(TAG, "Opened");
                 mCameraDevice = cameraDevice;
                 createPreviewSession();
 
@@ -92,14 +89,12 @@ public class CameraController {
 
             @Override
             public void onDisconnected(CameraDevice cameraDevice) {
-                Log.d(TAG, "dc");
                 cameraDevice.close();
                 mCameraDevice = null;
             }
 
             @Override
             public void onError(CameraDevice cameraDevice, int error) {
-                Log.d(TAG, "error");
                 cameraDevice.close();
                 mCameraDevice = null;
             }
@@ -132,8 +127,6 @@ public class CameraController {
         tempPic = mPreviewScreen.getBitmap();
 
         Bitmap scaled = Bitmap.createScaledBitmap(tempPic, Constants.CNN_DIM_X, Constants.CNN_DIM_Y, true);
-
-        Log.d(TAG, "takePicture: " + tempPic.getWidth() + "x" + tempPic.getHeight());
 
         unlock();
 

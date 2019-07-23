@@ -1,15 +1,11 @@
 package hr.ferit.tomislavrekic.cnnanimals.presenter;
 
-import android.util.Log;
-
 import hr.ferit.tomislavrekic.cnnanimals.model.NNModel;
 import hr.ferit.tomislavrekic.cnnanimals.ui.MainActivity;
 import hr.ferit.tomislavrekic.cnnanimals.utils.ClassifierCallback;
 import hr.ferit.tomislavrekic.cnnanimals.utils.Constants;
 import hr.ferit.tomislavrekic.cnnanimals.utils.DBContract;
 import hr.ferit.tomislavrekic.cnnanimals.utils.NNContract;
-
-import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.TAG;
 
 public class NNPresenter implements NNContract.Presenter {
     private NNContract.View mView;
@@ -29,9 +25,8 @@ public class NNPresenter implements NNContract.Presenter {
         mView.updatePicture(Constants.TEMP_IMG_KEY);
         mModel.runThroughNN(imageKey, new ClassifierCallback() {
             @Override
-            public void processFinished(int guessedLabelIndex, float guessedActivation) {
-                mView.updateText("act: " + guessedActivation + "\n" + "ind: " + guessedLabelIndex);
-                Log.d(TAG, "processFinished: " + guessedActivation + " ind " + guessedLabelIndex);
+            public void processFinished(String guessedLabel, int guessedLabelIndex, float guessedActivation) {
+                mView.updateText(guessedLabel, guessedActivation);
 
                 mDBPresenter.updateRow(guessedLabelIndex, guessedActivation, imageKey);
             }

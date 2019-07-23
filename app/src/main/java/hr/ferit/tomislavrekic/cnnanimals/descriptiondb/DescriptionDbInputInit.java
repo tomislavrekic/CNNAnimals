@@ -8,13 +8,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import hr.ferit.tomislavrekic.cnnanimals.utils.Constants;
+
 public final class DescriptionDbInputInit {
 
 
     private static List<String> initLabels(Context context) {
         List<String> labels = new ArrayList<>();
         try{
-            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open("labels.txt")));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(Constants.TF_LABEL_PATH)));
             String line;
             while((line = reader.readLine()) != null){
                 labels.add(line);

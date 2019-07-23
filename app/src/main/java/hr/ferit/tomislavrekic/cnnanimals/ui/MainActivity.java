@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -16,7 +14,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -119,9 +116,15 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
             @Override
             public void onReceive(Context context, Intent intent) {
                 presenter.runThroughNN(Constants.TEMP_IMG_KEY);
+
+                showLoadingText();
             }
         };
         receiverReg();
+    }
+
+    private void showLoadingText() {
+        tvGuess.setText("Just a moment...");
     }
 
     public void receiverReg(){
@@ -132,8 +135,8 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
     }
 
     @Override
-    public void updateText(String text) {
-        tvGuess.setText(text);
+    public void updateText(String guessedLabel, float activation) {
+        tvGuess.setText("Guessed: " + guessedLabel + "\nActivation: " + activation);
     }
 
     @Override

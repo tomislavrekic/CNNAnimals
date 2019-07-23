@@ -30,7 +30,7 @@ public class Classifier {
     public Classifier(String modelFileName, String labelFileName, Context context){
         mContext = context;
         initModel(modelFileName);
-        initLabels(labelFileName);
+        labels = initLabels(labelFileName, context);
     }
 
     public void classify(ClassifierCallback callback, String imageKey){
@@ -64,7 +64,7 @@ public class Classifier {
             int guessedLabelIndex = processLabelProb(floats);
             float guessedActivation = floats[0][guessedLabelIndex];
 
-            mCallback.processFinished(guessedLabelIndex,guessedActivation);
+            mCallback.processFinished(labels.get(guessedLabelIndex), guessedLabelIndex, guessedActivation);
 
 
         }
@@ -80,16 +80,10 @@ public class Classifier {
         return guessedLabelIndex;
     }
 
-
-    public List<String> getLabels(){
-        return labels;
-    }
-
-
-    private void initLabels(String labelFileName) {
-        labels = new ArrayList<>();
+    public static List<String> initLabels(String labelFileName, Context context) {
+        List<String> labels = new ArrayList<>();
         try{
-            BufferedReader reader = new BufferedReader(new InputStreamReader(mContext.getAssets().open(labelFileName)));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(labelFileName)));
             String line;
             while((line = reader.readLine()) != null){
                 labels.add(line);
@@ -98,6 +92,7 @@ public class Classifier {
         catch (IOException e){
             e.printStackTrace();
         }
+        return labels;
     }
 
     private void initModel(String modelFileName) {
@@ -110,7 +105,7 @@ public class Classifier {
     }
 
     private File getModelFile(String modelFileName) throws IOException {
-        File file = new File(mContext.getFilesDir(), Constants.TF_MODEL_KEY);
+        File file = new File(mContext.getFilesDir(), modelFileName);
         if(file.exists()) {
             return file;
         }

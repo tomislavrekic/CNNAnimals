@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DescriptionDbController {
-    private String TAG = "kekkek";
     private SQLiteDatabase db;
     private DescriptionDbHelper dbHelper;
 
@@ -37,8 +36,6 @@ public class DescriptionDbController {
         openDbForWrite();
 
         long newRowId = db.insert(DescriptionContract.DescriptionEntry.TABLE_NAME, null, InputToContentVal(input, Mode.UPDATE_FULL));
-
-        Log.d(TAG, "onCreate: " + String.valueOf(newRowId));
 
         closeDb();
         return newRowId;
@@ -91,9 +88,6 @@ public class DescriptionDbController {
 
             outputRows.add(tempUnit);
 
-            Log.d(TAG, "DB:  ID: " + itemId + "  NAME: " + tempName + "  INFO: " + tempInfo + " GUESS: "+ String.valueOf(tempGuess) + " GUESSCOUNT: "+
-                    String.valueOf(tempGuessCount) + " DATE: " + tempDate);
-
         }
         cursor.close();
         closeDb();
@@ -136,5 +130,3 @@ public class DescriptionDbController {
 
 
 }
-
-//TODO: Make a method that will initialize the database with names and infos of all animal classes. You have labels for names, infos will be in a seperate file. (or in strings file)

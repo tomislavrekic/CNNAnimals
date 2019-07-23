@@ -22,8 +22,6 @@ import hr.ferit.tomislavrekic.cnnanimals.utils.Constants;
 
 public class CameraActivity extends AppCompatActivity {
 
-    static String TAG = "Cam123";
-
     static int CAMERA_REQUEST_CODE = 101;
 
     TextureView previewScreen;
@@ -34,9 +32,6 @@ public class CameraActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
-        Log.d(TAG, "created");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_screen);
 
@@ -69,7 +64,6 @@ public class CameraActivity extends AppCompatActivity {
         broadcastIntent.setAction(Constants.BROADCAST_KEY1);
         broadcastIntent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         sendBroadcast(broadcastIntent);
-        Log.d("Screen", "broadcastIntent: sent");
     }
 
     private void initListeners() {
@@ -78,7 +72,6 @@ public class CameraActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     takePicture.setEnabled(false);
-                    Log.d("click", "clickCAM");
                     try {
                         createImageFromBitmap(cameraController.takePicture());
                     }
@@ -119,19 +112,13 @@ public class CameraActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-
-        takePicture.setEnabled(true);
-
-        Log.d(TAG, "resume");
-
         super.onResume();
+        takePicture.setEnabled(true);
         cameraController.resumeCamera();
     }
 
     @Override
     protected void onStop() {
-
-        Log.d(TAG, "stop");
         super.onStop();
         cameraController.stopCamera();
     }

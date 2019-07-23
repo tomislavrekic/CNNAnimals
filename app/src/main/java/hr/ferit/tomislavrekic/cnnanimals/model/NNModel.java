@@ -2,7 +2,6 @@ package hr.ferit.tomislavrekic.cnnanimals.model;
 
 import android.content.Context;
 
-import hr.ferit.tomislavrekic.cnnanimals.ui.MainActivity;
 import hr.ferit.tomislavrekic.cnnanimals.utils.ClassifierCallback;
 import hr.ferit.tomislavrekic.cnnanimals.utils.NNContract;
 
