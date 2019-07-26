@@ -21,8 +21,8 @@ import hr.ferit.tomislavrekic.cnnanimals.descriptiondb.DescriptionDbSingleUnit;
 import hr.ferit.tomislavrekic.cnnanimals.utils.OnClickListener;
 
 public class DatabaseActivity extends AppCompatActivity {
-    DescriptionDbController controller;
-    List<DescriptionDbSingleUnit> items;
+    private DescriptionDbController controller;
+    private List<DescriptionDbSingleUnit> items;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;

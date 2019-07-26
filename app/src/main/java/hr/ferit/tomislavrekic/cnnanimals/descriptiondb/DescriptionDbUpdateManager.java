@@ -8,7 +8,7 @@ import java.io.File;
 import hr.ferit.tomislavrekic.cnnanimals.utils.Constants;
 
 public class DescriptionDbUpdateManager {
-    DescriptionDbController controller;
+    private DescriptionDbController controller;
     private static float minGuessValue = Constants.MIN_GUESS_UPDATE_VALUE;
     private Context mContext;
 
@@ -24,8 +24,6 @@ public class DescriptionDbUpdateManager {
 
         DescriptionDbSingleUnit tempUnit = controller.readDb(input.getName()).get(0);
         input.setGuessCount(1 + tempUnit.getGuessCount());
-
-        //TODO: For possible full update, check if Info is different, do that inside DescriptionDbSingleUnit class
 
         if(input.getGuess() > tempUnit.getGuess()){
             File temp = new File(mContext.getFilesDir() , input.getPicture());

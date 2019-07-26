@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
     }
 
     private void showLoadingText() {
-        tvGuess.setText("Just a moment...");
+        tvGuess.setText(getString(R.string.loadingText));
     }
 
     public void receiverReg(){
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
 
     @Override
     public void updateText(String guessedLabel, float activation) {
-        tvGuess.setText("Guessed: " + guessedLabel + "\nActivation: " + activation);
+        tvGuess.setText(getString(R.string.guessText, guessedLabel, activation));
     }
 
     @Override

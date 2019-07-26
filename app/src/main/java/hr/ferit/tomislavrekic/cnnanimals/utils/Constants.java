@@ -4,6 +4,8 @@ public final class Constants {
     public static final String TAG = "CNNTAG";
 
     public static final String TEMP_IMG_KEY = "tempImage.jpg";
+    public static final String NO_IMG_KEY = "noImage";
+
     public static final int CNN_DIM_X = 224;
     public static final int CNN_DIM_Y = 224;
     public static final int DIM_BATCH_SIZE = 1;
@@ -26,9 +28,12 @@ public final class Constants {
     public static final String TF_MODEL_KEY = "model.tflite";
     public static final String TF_LABEL_PATH = "labels.txt";
 
+    public static final String DF_DESC_PATH = "desc.txt";
+
     public static final String BROADCAST_KEY1 = "hr.ferit.tomislavrekic.cnnanimals.sendbroadcast1";
 
     public static final String APP_LOGO = "FGMCLogo.png";
+    public static final String QUESTION_ICON = "question_mark.png";
 
     public static final float[] GUESS_RATING_STAGES = {0.4f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f};
 

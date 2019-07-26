@@ -19,6 +19,7 @@ import java.io.FileOutputStream;
 import hr.ferit.tomislavrekic.cnnanimals.R;
 import hr.ferit.tomislavrekic.cnnanimals.utils.CameraController;
 import hr.ferit.tomislavrekic.cnnanimals.utils.Constants;
+import hr.ferit.tomislavrekic.cnnanimals.utils.CreateFileFromBitmap;
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -73,7 +74,7 @@ public class CameraActivity extends AppCompatActivity {
                 try {
                     takePicture.setEnabled(false);
                     try {
-                        createImageFromBitmap(cameraController.takePicture());
+                        CreateFileFromBitmap.createFileFromBitmap(cameraController.takePicture(), CameraActivity.this, Constants.TEMP_IMG_KEY);
                     }
                     catch (Exception e){
                         e.printStackTrace();
@@ -90,25 +91,6 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-    public String createImageFromBitmap(Bitmap bitmap) {
-        String fileName = Constants.TEMP_IMG_KEY ;//no .png or .jpg needed
-        try {
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-            FileOutputStream fo = openFileOutput(fileName, Context.MODE_PRIVATE);
-            fo.write(bytes.toByteArray());
-            // remember close file output
-            fo.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            fileName = null;
-        }
-        return fileName;
-    }
-
 
     @Override
     protected void onResume() {

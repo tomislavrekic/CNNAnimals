@@ -5,4 +5,6 @@
     <string name="NavMenu1">Animal Database</string>
     <string name="NavMenu2">None</string>
     <string name="NavMenu3">None</string>
+    <string name="loadingText">Just a moment...</string>
+    <string name="guessText">Guessed: %1$s \nActivation: %2$.3f</string>
 </resources>
