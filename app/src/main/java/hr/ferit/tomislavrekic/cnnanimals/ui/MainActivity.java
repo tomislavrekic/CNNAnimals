@@ -1,5 +1,6 @@
 package hr.ferit.tomislavrekic.cnnanimals.ui;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -30,6 +32,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Random;
 
 import hr.ferit.tomislavrekic.cnnanimals.R;
 import hr.ferit.tomislavrekic.cnnanimals.presenter.NNPresenter;
@@ -50,7 +53,11 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
     private BroadcastReceiver receiver;
     private IntentFilter filter;
 
-    ActionBarDrawerToggle toggle;
+    private ActionBarDrawerToggle toggle;
+
+    private Resources res;
+
+    private ProgressDialog nDialog;
 
     public static Context getContext(){
         return context;
@@ -61,10 +68,13 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        res = getResources();
+
         context = getApplicationContext();
 
         presenter = new NNPresenter();
         presenter.addView(this);
+        presenter.initDB();
 
         initViews();
         initIntents();
@@ -143,6 +153,23 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
     public void updatePicture(String uri) {
         ivPreview.setImageBitmap(null);
         Picasso.get().load(new File(getFilesDir(), uri)).memoryPolicy(MemoryPolicy.NO_CACHE).into(ivPreview);
+    }
+
+    @Override
+    public void showLoading() {
+        nDialog = new ProgressDialog(this);
+        nDialog.setMessage(res.getString(R.string.loading));
+        nDialog.setTitle(res.getString(R.string.firstTimeInit));
+        nDialog.setIndeterminate(false);
+        nDialog.setCancelable(false);
+        nDialog.show();
+    }
+
+    @Override
+    public void hideLoading() {
+        if(nDialog.isShowing()){
+            nDialog.hide();
+        }
     }
 
     @Override

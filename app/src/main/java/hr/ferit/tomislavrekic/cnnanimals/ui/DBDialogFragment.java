@@ -1,13 +1,17 @@
 package hr.ferit.tomislavrekic.cnnanimals.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,6 +64,7 @@ public class DBDialogFragment extends DialogFragment {
         TextView tvGuess;
         TextView tvCount;
         TextView tvInfo;
+        Button btnMore;
 
         ivImage = v.findViewById(R.id.ivDetailImage);
         tvName = v.findViewById(R.id.tvDetailName);
@@ -67,8 +72,9 @@ public class DBDialogFragment extends DialogFragment {
         tvGuess = v.findViewById(R.id.tvDetailGuess);
         tvCount = v.findViewById(R.id.tvDetailCount);
         tvInfo = v.findViewById(R.id.tvDetailInfo);
+        btnMore = v.findViewById(R.id.btnMore);
 
-        String tempName = args.getString(Constants.DF_NAME_KEY);
+        final String tempName = args.getString(Constants.DF_NAME_KEY);
         String tempDate = args.getString(Constants.DF_DATE_KEY);
         String tempInfo = args.getString(Constants.DF_INFO_KEY);
         String tempImage = args.getString(Constants.DF_IMAGE_KEY);
@@ -102,6 +108,15 @@ public class DBDialogFragment extends DialogFragment {
         tvDate.setText(tempDate);
         tvGuess.setText(String.valueOf(tempGuess));
         tvCount.setText(String.valueOf(tempCount));
+
+        tvInfo.setMovementMethod(new ScrollingMovementMethod());
+        btnMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.WIKI_PAGE_BASE + tempName));
+                startActivity(browserIntent);
+            }
+        });
 
         return v;
     }

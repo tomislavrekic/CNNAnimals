@@ -6,12 +6,17 @@ public interface NNContract {
     interface View{
         void updateText(String guessedLabel, float activation);
         void updatePicture(String uri);
+        void showLoading();
+        void hideLoading();
     }
 
     interface Presenter{
         void runThroughNN(String imageKey);
         void addView(NNContract.View view);
         void removeView();
+        void showLoading();
+        void hideLoading();
+        void initDB();
     }
 
     interface Model{

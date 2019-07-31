@@ -13,6 +13,7 @@ import hr.ferit.tomislavrekic.cnnanimals.ui.MainActivity;
 import hr.ferit.tomislavrekic.cnnanimals.utils.Constants;
 import hr.ferit.tomislavrekic.cnnanimals.utils.DBCallback;
 import hr.ferit.tomislavrekic.cnnanimals.utils.DBContract;
+import hr.ferit.tomislavrekic.cnnanimals.utils.VoidCallback;
 
 import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.DB_IMG_DIM_X;
 import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.DB_IMG_DIM_Y;
@@ -21,16 +22,17 @@ public class DBModel implements DBContract.Model {
 
     private DescriptionDbUpdater mUpdater;
     private Context mContext;
+    private DescriptionDbInputInit dbInputInit;
 
-    public DBModel() {
+    public DBModel(VoidCallback callback) {
         mContext = MainActivity.getContext();
         mUpdater = new DescriptionDbUpdater(mContext, Classifier.initLabels(Constants.TF_LABEL_PATH, mContext));
-        initDB(mContext);
+        dbInputInit = new DescriptionDbInputInit(mContext, callback);
     }
 
     @Override
-    public void initDB(Context context) {
-        DescriptionDbInputInit.initDb(context);
+    public void initDB() {
+        dbInputInit.initDbData();
     }
 
     @Override
@@ -52,5 +54,10 @@ public class DBModel implements DBContract.Model {
     public void readDB(DBCallback callback) {
         DescriptionDbController controller = new DescriptionDbController(mContext);
         callback.processFinished(controller.readAll());
+    }
+
+    @Override
+    public boolean dBIsEmpty() {
+        return dbInputInit.dBIsEmpty();
     }
 }

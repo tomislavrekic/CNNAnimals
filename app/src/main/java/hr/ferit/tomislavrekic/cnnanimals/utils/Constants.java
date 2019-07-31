@@ -37,6 +37,9 @@ public final class Constants {
 
     public static final float[] GUESS_RATING_STAGES = {0.4f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f};
 
-    public static final float MIN_GUESS_UPDATE_VALUE = 0.2f;
+    public static final float MIN_GUESS_UPDATE_VALUE = 0.0f;
+
+    public static final String WIKI_PAGE_BASE = "https://en.wikipedia.org/wiki/";
+    public static final String WIKI_API_BASE = "https://www.wikipedia.org/";
 
 }

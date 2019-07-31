@@ -16,8 +16,6 @@ public class NNPresenter implements NNContract.Presenter {
     public NNPresenter() {
         mModel = new NNModel();
         mModel.initClassifier(Constants.TF_MODEL_PATH, Constants.TF_LABEL_PATH, MainActivity.getContext());
-
-        mDBPresenter = new DBPresenter();
     }
 
     @Override
@@ -41,5 +39,22 @@ public class NNPresenter implements NNContract.Presenter {
     @Override
     public void removeView() {
         mView = null;
+    }
+
+    @Override
+    public void showLoading() {
+        mView.showLoading();
+    }
+
+    @Override
+    public void hideLoading() {
+        mView.hideLoading();
+    }
+
+    @Override
+    public void initDB() {
+        mDBPresenter = new DBPresenter();
+        mDBPresenter.addPresenter(this);
+        mDBPresenter.initDB();
     }
 }

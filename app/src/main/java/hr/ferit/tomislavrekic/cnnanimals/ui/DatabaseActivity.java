@@ -3,9 +3,6 @@ package hr.ferit.tomislavrekic.cnnanimals.ui;
 
 import android.os.Bundle;
 
-import android.util.Log;
-import android.view.View;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -33,8 +30,6 @@ public class DatabaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_database);
-
-        DescriptionDbInputInit.initDb(this);
 
         controller = new DescriptionDbController(this);
 

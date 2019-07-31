@@ -21,7 +21,7 @@ import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.CNN_DIM_Y;
 
 public class FetchImageTask extends AsyncTask<String, Void, ByteBuffer> {
 
-    public FetchImageCallback mCallback;
+    private FetchImageCallback mCallback;
     private Context mContext;
 
     public FetchImageTask(Context context, FetchImageCallback callback) {

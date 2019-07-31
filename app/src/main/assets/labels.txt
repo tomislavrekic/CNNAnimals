@@ -3,7 +3,7 @@ Bear
 Butterfly
 Camel
 Centipede
-Chimp
+Chimpanzee
 Cockroach
 Cormorant
 Crab
@@ -22,7 +22,7 @@ Grasshopper
 Hawksbill
 Horse
 Horseshoe_crab
-House_fly
+Fly
 Hummingbird
 Ibis
 Iguana
@@ -34,9 +34,9 @@ Octopus
 Ostrich
 Owl
 Penguin
-People
+Human
 Porcupine
-Praying_mantis
+Mantis
 Raccoon
 Scorpion
 Skunk
@@ -45,7 +45,7 @@ Snake
 Spider
 Starfish
 Swan
+Toad
 Triceratops
 Trilobite
 Zebra
-Toad

@@ -24,7 +24,8 @@
         android:layout_marginStart="16dp"
         android:text="Elephant"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/_26sdp"
+        android:textSize="@dimen/_23sdp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/ivThumbnail"
         app:layout_constraintTop_toTopOf="parent" />
 

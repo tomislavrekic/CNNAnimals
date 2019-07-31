@@ -16,11 +16,14 @@ public interface DBContract {
         void readDB();
         void addView(DBContract.View view);
         void removeView();
+        void addPresenter(NNContract.Presenter presenter);
+        void initDB();
 
     }
     interface Model {
-        void initDB(Context context);
+        void initDB();
         void updateRow(int index, float activation, String imageKey);
         void readDB(DBCallback callback);
+        boolean dBIsEmpty();
     }
 }

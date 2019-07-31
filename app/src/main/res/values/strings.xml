@@ -7,4 +7,6 @@
     <string name="NavMenu3">None</string>
     <string name="loadingText">Just a moment...</string>
     <string name="guessText">Guessed: %1$s \nActivation: %2$.3f</string>
+    <string name="loading">Loading...</string>
+    <string name="firstTimeInit">First time initialization...</string>
 </resources>
