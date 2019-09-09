@@ -1,5 +1,9 @@
 package hr.ferit.tomislavrekic.cnnanimals.presenter;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import hr.ferit.tomislavrekic.cnnanimals.model.NNModel;
 import hr.ferit.tomislavrekic.cnnanimals.ui.MainActivity;
 import hr.ferit.tomislavrekic.cnnanimals.utils.ClassifierCallback;
@@ -23,10 +27,10 @@ public class NNPresenter implements NNContract.Presenter {
         mView.updatePicture(Constants.TEMP_IMG_KEY);
         mModel.runThroughNN(imageKey, new ClassifierCallback() {
             @Override
-            public void processFinished(String guessedLabel, int guessedLabelIndex, float guessedActivation) {
-                mView.updateText(guessedLabel, guessedActivation);
+            public void processFinished(String label, int labelIndex, float activation) {
+                mView.updateText(label, activation);
 
-                mDBPresenter.updateRow(guessedLabelIndex, guessedActivation, imageKey);
+                mDBPresenter.updateRow(labelIndex, activation, imageKey);
             }
         });
     }
@@ -53,8 +57,23 @@ public class NNPresenter implements NNContract.Presenter {
 
     @Override
     public void initDB() {
+        if(!isNetworkAvailable()){
+            mView.showErrorMessage("no internet, cant initialize descriptions");
+        }
+
         mDBPresenter = new DBPresenter();
         mDBPresenter.addPresenter(this);
         mDBPresenter.initDB();
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) MainActivity.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override
+    public void sendErrorMessage(String message) {
+        mView.showErrorMessage(message);
     }
 }

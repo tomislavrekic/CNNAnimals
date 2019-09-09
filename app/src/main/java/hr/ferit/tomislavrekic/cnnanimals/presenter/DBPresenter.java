@@ -1,5 +1,7 @@
 package hr.ferit.tomislavrekic.cnnanimals.presenter;
 
+import android.util.Log;
+
 import java.util.List;
 
 import hr.ferit.tomislavrekic.cnnanimals.descriptiondb.DescriptionDbSingleUnit;
@@ -9,6 +11,8 @@ import hr.ferit.tomislavrekic.cnnanimals.utils.DBContract;
 import hr.ferit.tomislavrekic.cnnanimals.utils.NNContract;
 import hr.ferit.tomislavrekic.cnnanimals.utils.VoidCallback;
 
+import static hr.ferit.tomislavrekic.cnnanimals.utils.Constants.TAG;
+
 public class DBPresenter implements DBContract.Presenter {
 
     private DBContract.Model mModel;
@@ -16,7 +20,7 @@ public class DBPresenter implements DBContract.Presenter {
     private NNContract.Presenter mNNPresenter;
 
     public DBPresenter() {
-        mModel = new DBModel(new VoidCallback() {
+        mModel = new DBModel(this, new VoidCallback() {
             @Override
             public void processFinished() {
                 mNNPresenter.hideLoading();
@@ -62,7 +66,20 @@ public class DBPresenter implements DBContract.Presenter {
         {
             mNNPresenter.showLoading();
             mModel.initDB();
+            Log.d(TAG, "initDB: empty");
         }
+        else if (mModel.dBNoDescs()){
+            mNNPresenter.showLoading();
+            mModel.updateDescs();
+            Log.d(TAG, "initDB: nodesc");
+        }
+        else{
+            Log.d(TAG, "initDB: notemptyhasdecs");
+        }
+    }
 
+    @Override
+    public void sendErrorNessage(String message) {
+        mNNPresenter.sendErrorMessage(message);
     }
 }

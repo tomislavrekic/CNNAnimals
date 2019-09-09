@@ -17,11 +17,3 @@ public final class DescriptionDatabaseSQLCommands {
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + DescriptionEntry.TABLE_NAME;
 }
-
-
-
-/*
-
-
-
- */

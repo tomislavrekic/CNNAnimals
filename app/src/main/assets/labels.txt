@@ -45,7 +45,7 @@ Snake
 Spider
 Starfish
 Swan
-Toad
 Triceratops
 Trilobite
 Zebra
+Toad

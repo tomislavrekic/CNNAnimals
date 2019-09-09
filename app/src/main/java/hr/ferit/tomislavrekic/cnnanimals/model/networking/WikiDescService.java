@@ -33,7 +33,13 @@ public class WikiDescService {
 
 
     public void getResponse(String title, Callback<WikiDescResponse> callback){
-        mCallAsync = wikiDescAPI.getResponse("json", "query", "extracts", "1", "1", title);
+        mCallAsync = wikiDescAPI.getResponse(
+                "json",
+                "query",
+                "extracts",
+                "1",
+                "1",
+                title);
         mCallAsync.clone().enqueue(callback);
     }
 }

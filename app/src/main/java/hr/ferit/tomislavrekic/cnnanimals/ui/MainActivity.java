@@ -1,8 +1,10 @@
 package hr.ferit.tomislavrekic.cnnanimals.ui;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 
@@ -24,6 +26,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.MemoryPolicy;
@@ -72,9 +75,12 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
 
         context = getApplicationContext();
 
-        presenter = new NNPresenter();
-        presenter.addView(this);
-        presenter.initDB();
+        nDialog = new ProgressDialog(this);
+        nDialog.setMessage(res.getString(R.string.loading));
+        nDialog.setTitle(res.getString(R.string.firstTimeInit));
+        nDialog.setIndeterminate(false);
+        nDialog.setCancelable(false);
+
 
         initViews();
         initIntents();
@@ -83,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
 
         initNavBar();
 
+        presenter = new NNPresenter();
+        presenter.addView(this);
+        presenter.initDB();
     }
 
     @Override
@@ -157,11 +166,6 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
 
     @Override
     public void showLoading() {
-        nDialog = new ProgressDialog(this);
-        nDialog.setMessage(res.getString(R.string.loading));
-        nDialog.setTitle(res.getString(R.string.firstTimeInit));
-        nDialog.setIndeterminate(false);
-        nDialog.setCancelable(false);
         nDialog.show();
     }
 
@@ -170,6 +174,31 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
         if(nDialog.isShowing()){
             nDialog.hide();
         }
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+        hideLoading();
+        
+        if(isFinishing()){
+            new AlertDialog.Builder(this)
+                    .setTitle(res.getString(R.string.network_error_title))
+                    .setMessage(message)
+                    .setPositiveButton(res.getString(R.string.network_error_ok_button), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(MainActivity.this, res.getString(R.string.network_error_ok_toast), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+
+                        }
+                    })
+                    .show();
+        }
+              
     }
 
     @Override

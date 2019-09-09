@@ -74,7 +74,10 @@ public class CameraActivity extends AppCompatActivity {
                 try {
                     takePicture.setEnabled(false);
                     try {
-                        CreateFileFromBitmap.createFileFromBitmap(cameraController.takePicture(), CameraActivity.this, Constants.TEMP_IMG_KEY);
+                        CreateFileFromBitmap.createFileFromBitmap(
+                                cameraController.takePicture(),
+                                CameraActivity.this,
+                                Constants.TEMP_IMG_KEY);
                     }
                     catch (Exception e){
                         e.printStackTrace();

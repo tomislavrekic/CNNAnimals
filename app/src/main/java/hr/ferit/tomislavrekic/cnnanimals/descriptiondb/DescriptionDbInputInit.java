@@ -21,6 +21,7 @@ import hr.ferit.tomislavrekic.cnnanimals.model.networking.pojos.Page;
 import hr.ferit.tomislavrekic.cnnanimals.model.networking.pojos.WikiDescResponse;
 import hr.ferit.tomislavrekic.cnnanimals.utils.Constants;
 import hr.ferit.tomislavrekic.cnnanimals.utils.CreateFileFromBitmap;
+import hr.ferit.tomislavrekic.cnnanimals.utils.DBContract;
 import hr.ferit.tomislavrekic.cnnanimals.utils.VoidCallback;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -36,12 +37,14 @@ public class DescriptionDbInputInit {
     private Context mContext;
     private int counter = 0;
     private VoidCallback mCallback;
+    private DBContract.Model mModel;
 
-    public DescriptionDbInputInit(Context context, VoidCallback callback){
+    public DescriptionDbInputInit(Context context, VoidCallback callback, DBContract.Model model){
         mContext=context;
         descs = new Hashtable<>();
         labels = new ArrayList<>();
         mCallback = callback;
+        mModel = model;
     }
 
     private void initLabels() {
@@ -57,51 +60,75 @@ public class DescriptionDbInputInit {
         }
     }
 
-    private void initDesc(){
+    public void initDesc(){
+        if(labels.size() == 0){
+            initLabels();
+        }
         WikiDescService service = new WikiDescService();
 
+        Log.d(TAG, "initDesc: enter");
+        Log.d(TAG, "initDesc: " + labels.size());
         for (int j=0; j<labels.size(); j++){
             service.getResponse(labels.get(j), new Callback<WikiDescResponse>() {
                 @Override
                 public void onResponse(Call<WikiDescResponse> call, Response<WikiDescResponse> response) {
                     if(!response.isSuccessful()) return;
-
+                    Log.d(TAG, "onResponse: test");
                     Page page = (Page)response.body().getQuery().getPageMap().values().toArray()[0];
 
-                    String animName = page.getTitle();
-                    animName = animName.replace(" ", "_");
+                    String animName = call.request().url().queryParameter("titles");
                     String desc = page.getExtract();
 
                     descs.put(animName, desc);
 
                     counter++;
 
+                    Log.d(TAG, "onResponse: " + counter);
+
                     if(counter == labels.size()){
-                        initDb();
+                        updateDescs();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<WikiDescResponse> call, Throwable t) {
                     Log.d(TAG, "onFailure: " + t.toString());
+                    sendError(t.getMessage());
+
+                    String animName = call.request().url().queryParameter("titles");
+                    String desc = "";
+
+                    descs.put(animName, desc);
+
+                    counter++;
+
+                    if(counter == labels.size()){
+                        updateDescs();
+                    }
                 }
             });
         }
-
     }
 
-    public boolean dBIsEmpty(){
-        DescriptionDbController tempController = new DescriptionDbController(mContext);
-
-        if(tempController.readAll().size() != 0){
-            return false;
+    private void updateDescs(){
+        DescriptionDbController controller = new DescriptionDbController(mContext);
+        List<DescriptionDbSingleUnit> data = controller.readAll();
+        for(int i = 0; i<labels.size(); i++){
+            DescriptionDbSingleUnit input = data.get(i);
+            input.setInfo(descs.get(input.getName()));
+            controller.updateRow(input, DescriptionDbController.Mode.UPDATE_FULL);
         }
-        return true;
+        Log.d(TAG, "updateDescs: finished");
+        mCallback.processFinished();
+    }
+
+    private void sendError(String message){
+        mModel.sendErrorMessage(message);
     }
 
     public void initDbData(){
         initLabels();
-        initDesc();
+        initDb();
 
     }
 
@@ -121,16 +148,26 @@ public class DescriptionDbInputInit {
 
         if(stream != null){
             Bitmap temp = BitmapFactory.decodeStream(stream);
-            scaled = Bitmap.createScaledBitmap(temp, Constants.DB_IMG_DIM_X,Constants.DB_IMG_DIM_Y,true);
+            scaled = Bitmap.createScaledBitmap(
+                    temp,
+                    Constants.DB_IMG_DIM_X,
+                    Constants.DB_IMG_DIM_Y,
+                    true);
         }
 
         CreateFileFromBitmap.createFileFromBitmap(scaled, mContext, Constants.NO_IMG_KEY);
 
         for(int i=0; i<labels.size();i++){
-            DescriptionDbSingleUnit tempUnit = new DescriptionDbSingleUnit(labels.get(i), descs.get(labels.get(i)), Constants.NO_IMG_KEY, 0.0f, 0, "never" );
+            DescriptionDbSingleUnit tempUnit = new DescriptionDbSingleUnit(
+                    labels.get(i),
+                    "",
+                    Constants.NO_IMG_KEY,
+                    0.0f,
+                    0,
+                    "never" );
 
             tempController.insertRow(tempUnit);
         }
-        mCallback.processFinished();
+        initDesc();
     }
 }

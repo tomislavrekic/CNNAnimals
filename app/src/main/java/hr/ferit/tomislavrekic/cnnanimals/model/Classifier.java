@@ -61,10 +61,10 @@ public class Classifier {
         @Override
         protected void onPostExecute(float[][] floats) {
             super.onPostExecute(floats);
-            int guessedLabelIndex = processLabelProb(floats);
-            float guessedActivation = floats[0][guessedLabelIndex];
+            int labelIndex = processLabelProb(floats);
+            float activation = floats[0][labelIndex];
 
-            mCallback.processFinished(labels.get(guessedLabelIndex), guessedLabelIndex, guessedActivation);
+            mCallback.processFinished(labels.get(labelIndex), labelIndex, activation);
 
 
         }

@@ -29,9 +29,15 @@ public class DescriptionDbUpdater {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String formattedDate = df.format(c);
 
-        DescriptionDbSingleUnit tempUnit = new DescriptionDbSingleUnit(mLabels.get(guessedLabelIndex), null, createImageFromBitmapDB(inputImage), guessedActivation, 0, formattedDate);
+        DescriptionDbSingleUnit tempUnit = new DescriptionDbSingleUnit(
+                mLabels.get(guessedLabelIndex),
+                null,
+                createImageFromBitmapDB(inputImage),
+                guessedActivation,
+                0,
+                formattedDate);
 
-        manager.UpdateRow(tempUnit);
+        manager.updateRow(tempUnit);
     }
 
     public String createImageFromBitmapDB(Bitmap bitmap) {

@@ -8,6 +8,7 @@ public interface NNContract {
         void updatePicture(String uri);
         void showLoading();
         void hideLoading();
+        void showErrorMessage(String message);
     }
 
     interface Presenter{
@@ -17,6 +18,7 @@ public interface NNContract {
         void showLoading();
         void hideLoading();
         void initDB();
+        void sendErrorMessage(String message);
     }
 
     interface Model{

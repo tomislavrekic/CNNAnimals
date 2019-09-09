@@ -35,7 +35,10 @@ public class DescriptionDbController {
     public long insertRow(DescriptionDbSingleUnit input){
         openDbForWrite();
 
-        long newRowId = db.insert(DescriptionContract.DescriptionEntry.TABLE_NAME, null, InputToContentVal(input, Mode.UPDATE_FULL));
+        long newRowId = db.insert(
+                DescriptionContract.DescriptionEntry.TABLE_NAME,
+                null,
+                InputToContentVal(input, Mode.UPDATE_FULL));
 
         closeDb();
         return newRowId;

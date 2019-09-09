@@ -23,11 +23,13 @@ public class DBModel implements DBContract.Model {
     private DescriptionDbUpdater mUpdater;
     private Context mContext;
     private DescriptionDbInputInit dbInputInit;
+    private DBContract.Presenter mPresenter;
 
-    public DBModel(VoidCallback callback) {
+    public DBModel(DBContract.Presenter presenter, VoidCallback callback) {
         mContext = MainActivity.getContext();
         mUpdater = new DescriptionDbUpdater(mContext, Classifier.initLabels(Constants.TF_LABEL_PATH, mContext));
-        dbInputInit = new DescriptionDbInputInit(mContext, callback);
+        dbInputInit = new DescriptionDbInputInit(mContext, callback, this);
+        mPresenter = presenter;
     }
 
     @Override
@@ -58,6 +60,31 @@ public class DBModel implements DBContract.Model {
 
     @Override
     public boolean dBIsEmpty() {
-        return dbInputInit.dBIsEmpty();
+        DescriptionDbController tempController = new DescriptionDbController(mContext);
+
+        if(tempController.readAll().size() != 0){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void sendErrorMessage(String message) {
+        mPresenter.sendErrorNessage(message);
+    }
+
+    @Override
+    public boolean dBNoDescs() {
+        DescriptionDbController tempController = new DescriptionDbController(mContext);
+
+        if(tempController.readAll().get(0).getInfo().equals("")){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void updateDescs() {
+        dbInputInit.initDesc();
     }
 }

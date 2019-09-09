@@ -52,8 +52,6 @@
     app:itemIconTint="@color/colorAccent"
     android:background="@color/colorPrimary">
 
-
     </com.google.android.material.navigation.NavigationView>
-
 </androidx.drawerlayout.widget.DrawerLayout>
 

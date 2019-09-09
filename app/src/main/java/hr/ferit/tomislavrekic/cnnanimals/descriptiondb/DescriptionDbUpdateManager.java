@@ -1,7 +1,6 @@
 package hr.ferit.tomislavrekic.cnnanimals.descriptiondb;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.io.File;
 
@@ -17,7 +16,7 @@ public class DescriptionDbUpdateManager {
         mContext = context;
     }
 
-    public void UpdateRow(DescriptionDbSingleUnit input){
+    public void updateRow(DescriptionDbSingleUnit input){
         if(input.getGuess() < minGuessValue){
             return;
         }
@@ -31,22 +30,22 @@ public class DescriptionDbUpdateManager {
             temp.renameTo(new File(mContext.getFilesDir() , input.getName()));
             input.setPicture(input.getName());
 
-            UpdatePic(input);
+            updatePic(input);
         }
         else {
-            UpdateGuess(input);
+            updateGuess(input);
         }
     }
 
-    private void UpdateFull(DescriptionDbSingleUnit input){
+    private void updateFull(DescriptionDbSingleUnit input){
         controller.updateRow(input, DescriptionDbController.Mode.UPDATE_FULL);
     }
 
-    private void UpdatePic(DescriptionDbSingleUnit input){
+    private void updatePic(DescriptionDbSingleUnit input){
         controller.updateRow(input, DescriptionDbController.Mode.UPDATE_PICTURE);
     }
 
-    private void UpdateGuess(DescriptionDbSingleUnit input){
+    private void updateGuess(DescriptionDbSingleUnit input){
         controller.updateRow(input, DescriptionDbController.Mode.UPDATE_COUNTER);
     }
 
