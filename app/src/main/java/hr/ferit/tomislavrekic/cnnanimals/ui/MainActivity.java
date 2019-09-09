@@ -35,6 +35,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.util.Random;
 
 import hr.ferit.tomislavrekic.cnnanimals.R;
@@ -81,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
         nDialog.setIndeterminate(false);
         nDialog.setCancelable(false);
 
-
         initViews();
         initIntents();
 
@@ -93,6 +93,9 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
         presenter.addView(this);
         presenter.initDB();
     }
+
+
+
 
     @Override
     protected void onResume() {
@@ -277,9 +280,9 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
                         startActivityIfNeeded(intent1, 0);
                         break;
                     case R.id.Inav2:
-                        //Intent intent2 = new Intent(MainActivity.this, HelpActivity.class);
-                        //intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        //startActivityIfNeeded(intent2, 0);
+                        Intent intent2 = new Intent(MainActivity.this, MenuActivity.class);
+                        intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivityIfNeeded(intent2, 0);
                         break;
                     case R.id.Inav3:
                         //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(FGMC_WEB_ADRESS));

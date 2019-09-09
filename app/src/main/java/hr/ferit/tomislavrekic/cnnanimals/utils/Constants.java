@@ -25,10 +25,13 @@ public final class Constants {
     public static final String DF_INFO_KEY = "dbInfoKey";
 
     public static final String TF_MODEL_PATH = "Mobile2.tflite";
+    public static final String[] TF_MODEL_PATHS = {"Mobile2.tflite", "Mobile2_4.tflite"};
+
     public static final String TF_MODEL_KEY = "model.tflite";
     public static final String TF_LABEL_PATH = "labels.txt";
 
-    public static final String DF_DESC_PATH = "desc.txt";
+    public static final String SETTINGS_FILENAME = "settings.txt";
+    public static final String SETTINGS_DEFAULT = "0";
 
     public static final String BROADCAST_KEY1 = "hr.ferit.tomislavrekic.cnnanimals.sendbroadcast1";
 
