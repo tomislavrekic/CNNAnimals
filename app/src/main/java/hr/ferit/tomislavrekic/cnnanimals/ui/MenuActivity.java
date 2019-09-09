@@ -27,7 +27,7 @@ public class MenuActivity extends AppCompatActivity {
         int currentState = NNPresenter.readSettings();
 
         Spinner dropdown = findViewById(R.id.sDropdown);
-        String[] items = new String[]{"One", "TWo"};
+        String[] items = new String[]{Constants.MODEL_NAMES[0], Constants.MODEL_NAMES[1]};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
         dropdown.setSelection(currentState);

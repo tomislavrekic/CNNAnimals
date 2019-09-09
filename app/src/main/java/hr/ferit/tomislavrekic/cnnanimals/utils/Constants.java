@@ -25,7 +25,8 @@ public final class Constants {
     public static final String DF_INFO_KEY = "dbInfoKey";
 
     public static final String TF_MODEL_PATH = "Mobile2.tflite";
-    public static final String[] TF_MODEL_PATHS = {"Mobile2.tflite", "Mobile2_4.tflite"};
+    public static final String[] TF_MODEL_PATHS = {"Mobile2_4.tflite", "Mobile2.tflite"};
+    public static final String[] MODEL_NAMES = {"MobileNetV2 dataAugmented", "MobileNetV2 noAugmentation"};
 
     public static final String TF_MODEL_KEY = "model.tflite";
     public static final String TF_LABEL_PATH = "labels.txt";
@@ -35,7 +36,7 @@ public final class Constants {
 
     public static final String BROADCAST_KEY1 = "hr.ferit.tomislavrekic.cnnanimals.sendbroadcast1";
 
-    public static final String APP_LOGO = "FGMCLogo.png";
+    public static final String APP_LOGO = "AppLogo.png";
     public static final String QUESTION_ICON = "question_mark.png";
 
     public static final float[] GUESS_RATING_STAGES = {0.4f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f};
