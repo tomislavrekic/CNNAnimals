@@ -69,11 +69,6 @@ public class DBModel implements DBContract.Model {
     }
 
     @Override
-    public void sendErrorMessage(String message) {
-        mPresenter.sendErrorNessage(message);
-    }
-
-    @Override
     public boolean dBNoDescs() {
         DescriptionDbController tempController = new DescriptionDbController(mContext);
 

@@ -93,7 +93,6 @@ public class DescriptionDbInputInit {
                 @Override
                 public void onFailure(Call<WikiDescResponse> call, Throwable t) {
                     Log.d(TAG, "onFailure: " + t.toString());
-                    sendError(t.getMessage());
 
                     String animName = call.request().url().queryParameter("titles");
                     String desc = "";
@@ -122,9 +121,6 @@ public class DescriptionDbInputInit {
         mCallback.processFinished();
     }
 
-    private void sendError(String message){
-        mModel.sendErrorMessage(message);
-    }
 
     public void initDbData(){
         initLabels();

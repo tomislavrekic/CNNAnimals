@@ -78,8 +78,4 @@ public class DBPresenter implements DBContract.Presenter {
         }
     }
 
-    @Override
-    public void sendErrorNessage(String message) {
-        mNNPresenter.sendErrorMessage(message);
-    }
 }

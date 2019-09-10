@@ -121,9 +121,4 @@ public class NNPresenter implements NNContract.Presenter {
         mDBPresenter.addPresenter(this);
         mDBPresenter.initDB();
     }
-
-    @Override
-    public void sendErrorMessage(String message) {
-        mView.showErrorMessage(message);
-    }
 }

@@ -180,31 +180,6 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
     }
 
     @Override
-    public void showErrorMessage(String message) {
-        hideLoading();
-        
-        if(isFinishing()){
-            new AlertDialog.Builder(this)
-                    .setTitle(res.getString(R.string.network_error_title))
-                    .setMessage(message)
-                    .setPositiveButton(res.getString(R.string.network_error_ok_button), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(MainActivity.this, res.getString(R.string.network_error_ok_toast), Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public void onCancel(DialogInterface dialog) {
-
-                        }
-                    })
-                    .show();
-        }
-              
-    }
-
-    @Override
     public void onBackPressed() {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
@@ -280,14 +255,19 @@ public class MainActivity extends AppCompatActivity implements NNContract.View {
                         startActivityIfNeeded(intent1, 0);
                         break;
                     case R.id.Inav2:
-                        Intent intent2 = new Intent(MainActivity.this, MenuActivity.class);
+                        Intent intent2 = new Intent(MainActivity.this, AboutActivity.class);
                         intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivityIfNeeded(intent2, 0);
                         break;
                     case R.id.Inav3:
-                        //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(FGMC_WEB_ADRESS));
-                        //startActivity(browserIntent);
-
+                        Intent intent3 = new Intent(MainActivity.this, HelpActivity.class);
+                        intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivityIfNeeded(intent3, 0);
+                        break;
+                    case R.id.Inav4:
+                        Intent intent4 = new Intent(MainActivity.this, MenuActivity.class);
+                        intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivityIfNeeded(intent4, 0);
                         break;
                     default:
                         return true;

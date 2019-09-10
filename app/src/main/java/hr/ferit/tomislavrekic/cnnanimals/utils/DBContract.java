@@ -18,7 +18,6 @@ public interface DBContract {
         void removeView();
         void addPresenter(NNContract.Presenter presenter);
         void initDB();
-        void sendErrorNessage(String message);
 
     }
     interface Model {
@@ -26,7 +25,6 @@ public interface DBContract {
         void updateRow(int index, float activation, String imageKey);
         void readDB(DBCallback callback);
         boolean dBIsEmpty();
-        void sendErrorMessage(String message);
         boolean dBNoDescs();
         void updateDescs();
     }

@@ -3,14 +3,22 @@
     <string name="NavOpen">open</string>
     <string name="NavClose">close</string>
     <string name="NavMenu1">Animal Database</string>
-    <string name="NavMenu2">None</string>
-    <string name="NavMenu3">None</string>
+    <string name="NavMenu2">About</string>
+    <string name="NavMenu3">Help</string>
+    <string name="NavMenu4">Preferences</string>
     <string name="loadingText">Just a moment...</string>
     <string name="guessText">Guessed: %1$s \nActivation: %2$.3f</string>
     <string name="loading">Loading...</string>
-    <string name="firstTimeInit">First time initialization...</string>
-    <string name="network_error_title">Error</string>
-    <string name="network_error_body">Something is wrong</string>
-    <string name="network_error_ok_button">it\'s not ok</string>
-    <string name="network_error_ok_toast">Sorry :(</string>
+    <string name="firstTimeInit">Initializing the descriptions...</string>
+
+    <string-array name="HelpTexts">
+
+        <item>"Press the OPEN CAMERA button to open the phone's camera"</item>
+
+        <item>"Find an animal that you want to classify.\nPress TAKE PICTURE once you get a clear view of the animal."</item>
+
+        <item>"The app has classified the animal, the result is shown at the bottom. \nIf the animal hasn't been classified correctly, please try again. Do note that not all animals are supported"</item>
+
+    </string-array>
+    <string name="AboutText">"An app made for a thesis.\nThe goal was to find a real-life application for a neural network and to create an interface for such a neural network.\nAndroid was the ideal platform to serve as an interface."</string>
 </resources>

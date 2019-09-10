@@ -25,8 +25,8 @@ public final class Constants {
     public static final String DF_INFO_KEY = "dbInfoKey";
 
     public static final String TF_MODEL_PATH = "Mobile2.tflite";
-    public static final String[] TF_MODEL_PATHS = {"Mobile2_4.tflite", "Mobile2.tflite"};
-    public static final String[] MODEL_NAMES = {"MobileNetV2 dataAugmented", "MobileNetV2 noAugmentation"};
+    public static final String[] TF_MODEL_PATHS = {"Mobile2_4.tflite", "Mobile2.tflite","NASNetMobile.tflite"};
+    public static final String[] MODEL_NAMES = {"MobileNetV2 dataAugmented", "MobileNetV2 noAugmentation", "NASNetMobile dataAugmented"};
 
     public static final String TF_MODEL_KEY = "model.tflite";
     public static final String TF_LABEL_PATH = "labels.txt";
@@ -38,6 +38,11 @@ public final class Constants {
 
     public static final String APP_LOGO = "AppLogo.png";
     public static final String QUESTION_ICON = "question_mark.png";
+
+    public static final String[] HELP_IMAGES = {"help1.jpg", "help2.jpg", "help3.jpg"};
+
+    public static final String F_IMAGE_KEY = "FImageKey";
+    public static final String F_TEXT_KEY = "FTextKey";
 
     public static final float[] GUESS_RATING_STAGES = {0.4f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f};
 

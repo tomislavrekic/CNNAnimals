@@ -2,13 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/Inav1"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@android:drawable/ic_menu_gallery"
         android:title="@string/NavMenu1"/>
     <item android:id="@+id/Inav2"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/NavMenu2"/>
     <item android:id="@+id/Inav3"
-        android:icon="@android:drawable/ic_menu_myplaces"
+        android:icon="@android:drawable/ic_menu_help"
         android:title="@string/NavMenu3"/>
+    <item android:id="@+id/Inav4"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/NavMenu4"/>
 
 </menu>

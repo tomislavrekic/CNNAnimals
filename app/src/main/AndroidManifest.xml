@@ -30,6 +30,12 @@
         <activity android:name=".ui.MenuActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.AboutActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.HelpActivity"
+            android:screenOrientation="portrait"/>
+
         <provider
             android:authorities="hr.ferit.tomislavrekic.cnnanimals"
             android:name="androidx.core.content.FileProvider"
