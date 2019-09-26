@@ -66,25 +66,16 @@ public class DescriptionDbInputInit {
         }
         WikiDescService service = new WikiDescService();
 
-        Log.d(TAG, "initDesc: enter");
-        Log.d(TAG, "initDesc: " + labels.size());
         for (int j=0; j<labels.size(); j++){
             service.getResponse(labels.get(j), new Callback<WikiDescResponse>() {
                 @Override
                 public void onResponse(Call<WikiDescResponse> call, Response<WikiDescResponse> response) {
                     if(!response.isSuccessful()) return;
-                    Log.d(TAG, "onResponse: test");
                     Page page = (Page)response.body().getQuery().getPageMap().values().toArray()[0];
-
                     String animName = call.request().url().queryParameter("titles");
                     String desc = page.getExtract();
-
                     descs.put(animName, desc);
-
                     counter++;
-
-                    Log.d(TAG, "onResponse: " + counter);
-
                     if(counter == labels.size()){
                         updateDescs();
                     }
@@ -93,14 +84,10 @@ public class DescriptionDbInputInit {
                 @Override
                 public void onFailure(Call<WikiDescResponse> call, Throwable t) {
                     Log.d(TAG, "onFailure: " + t.toString());
-
                     String animName = call.request().url().queryParameter("titles");
                     String desc = "";
-
                     descs.put(animName, desc);
-
                     counter++;
-
                     if(counter == labels.size()){
                         updateDescs();
                     }
