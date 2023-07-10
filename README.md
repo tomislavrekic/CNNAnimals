@@ -6,7 +6,7 @@ This is an app I made as a part of my [Bachelor's thesis](https://dabar.srce.hr/
 
 After opening the app, you can see that the screen is mostly empty, with a button *OPEN CAMERA* below. Pressing this button will start the camera feed allowing you to capture an image.
 
-<p style="text-align:center"><img src="images/1.jpg" width="320" alt="Opening screen"></p>
+<p align="center"><img src="images/1.jpg" width="320" alt="Opening screen"></p>
 
 Now we can take a picture of this cute dog. Ensure the quality of the image is solid, then press *TAKE PICTURE*.
 
