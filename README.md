@@ -1,4 +1,4 @@
-<img src="images/Slike/deerSilhouette.png" width="120">
+<img src="images/deerSilhouette.png" width="120">
 
 # CNNAnimals
 
